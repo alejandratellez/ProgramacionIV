@@ -7,6 +7,8 @@ public class Turno {
 	private String servicio;
 	private boolean prioridad;
 	private Date fecha;
+	
+	
 	public Cliente getDatos() {
 		return datos;
 	}
