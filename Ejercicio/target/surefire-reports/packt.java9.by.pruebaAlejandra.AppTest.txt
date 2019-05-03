@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: packt.java9.by.pruebaAlejandra.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s - in packt.java9.by.pruebaAlejandra.AppTest
