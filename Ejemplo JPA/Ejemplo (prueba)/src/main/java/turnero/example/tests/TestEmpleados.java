@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import com.ibm.icu.util.GregorianCalendar;
 
+import turnero.example.Direccion;
 import turnero.example.Empleado;
 
 public class TestEmpleados {
@@ -29,11 +30,16 @@ public class TestEmpleados {
 		 */
 		Empleado e = new Empleado(10L, "Tellez", "Alejandra", 23);
 		Empleado e2 = new Empleado(11L, "Tellez", "Leandro", 26);
+		/*Direccion d =new Direccion (10L, "Tb", "123", "Pereira","Colombia");
+		 * e.setDireccion(d)*/
+		
 		manager.getTransaction().begin();
 		manager.persist(e);
-		manager.persist(e2);
 	
 		manager.getTransaction().commit();
+		manager.persist(e2);
+	
+		
 
 		imprimirTodo();
 	}

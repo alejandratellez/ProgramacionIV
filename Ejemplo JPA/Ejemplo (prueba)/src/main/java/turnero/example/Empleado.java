@@ -6,39 +6,48 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_EMPLEADO")
 
-public class Empleado implements Serializable{
+public class Empleado implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "COD_EMPLEADO")
 	private Long codigo;
-	
-	@Column(name="APELLIDOS")
+
+	@Column(name = "APELLIDOS")
 	private String apellido;
-	
-	@Column (name="NOMBRES")
+
+	@Column(name = "NOMBRES")
 	private String nombre;
-	
-	@Column(name="FECHA_NACIMIENTO")
+
+	@Column(name = "FECHA_NACIMIENTO")
 	private int fechaNacimiento;
-
+	/*
+	@OneToOne
+	@JoinColumn(name="DIRECCION")
 	
-
+*/
+	
 	public Empleado(Long codigo, String apellido, String nombre, int fechaNacimiento) {
-		
+
 		this.codigo = codigo;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	
+	
+	
 	public Empleado() {
 	}
 
@@ -73,13 +82,16 @@ public class Empleado implements Serializable{
 	public void setFechaNacimiento(int fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-
+	
+/*
+	public void setDireccion(Direccion direccion) {
+		this.direccion=direccion;
+	}
+*/
 	@Override
 	public String toString() {
 		return "Empleado [codigo=" + codigo + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNacimiento="
 				+ fechaNacimiento + "]";
 	}
-	
-	
 
 }
