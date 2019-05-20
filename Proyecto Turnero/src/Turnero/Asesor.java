@@ -1,26 +1,11 @@
 package Turnero;
 
-import java.sql.Date;
-
-public class Asesor {
-	private String idAsesor;
-	private String nombre;
+public class Asesor extends Persona {
 	private String serv1;
 	private String serv2;
 	private String serv3;
-	private boolean estado;
-	public String getIdAsesor() {
-		return idAsesor;
-	}
-	public void setIdAsesor(String idAsesor) {
-		this.idAsesor = idAsesor;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	private boolean estado;	
+	
 	public String getServ1() {
 		return serv1;
 	}

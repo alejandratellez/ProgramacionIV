@@ -1,14 +1,15 @@
 package Turnero;
 
-public class Cliente {
-	private String id;
-	private String nombre;
+public class Persona {
+	
+	public int id;
+	public String nombre;
 	
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -17,6 +18,4 @@ public class Cliente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-
 }
