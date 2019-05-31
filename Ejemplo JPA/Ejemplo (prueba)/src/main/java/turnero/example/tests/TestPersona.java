@@ -28,8 +28,9 @@ public class TestPersona {
 
 		manager.getTransaction().begin();
 		manager.persist(e);
-
 		manager.getTransaction().commit();
+		
+		
 		manager.getTransaction().begin();
 		manager.persist(e2);
 		manager.getTransaction().commit();
@@ -39,7 +40,7 @@ public class TestPersona {
 
 	private static void imprimirTodo() {
 		List<Persona> Personas = (List<Persona>) manager.createQuery("FROM Persona").getResultList();
-		System.out.print("HAY " + Personas.size() + "Personas en el sistema \n");
+		System.out.print("HAY " + Personas.size() + "  Personas en el sistema \n");
 		for (Persona emp : Personas) {
 			System.out.print(emp.toString() + "\n");
 		}

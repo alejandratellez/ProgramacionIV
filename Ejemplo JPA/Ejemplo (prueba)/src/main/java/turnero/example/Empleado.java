@@ -1,13 +1,10 @@
 package turnero.example;
 
 import java.io.Serializable;
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
 @Entity
@@ -32,11 +29,12 @@ public class Empleado implements Serializable {
 	@Column(name = "FECHA_NACIMIENTO")
 	private int fechaNacimiento;
 	/*
-	@OneToOne
-	@JoinColumn(name="DIRECCION")
-	
-*/
-	
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name="DIRECCION")
+	 * 
+	 */
+
 	public Empleado(Long codigo, String apellido, String nombre, int fechaNacimiento) {
 
 		this.codigo = codigo;
@@ -45,9 +43,6 @@ public class Empleado implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	
-	
-	
 	public Empleado() {
 	}
 
@@ -82,12 +77,10 @@ public class Empleado implements Serializable {
 	public void setFechaNacimiento(int fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
-/*
-	public void setDireccion(Direccion direccion) {
-		this.direccion=direccion;
-	}
-*/
+
+	/*
+	 * public void setDireccion(Direccion direccion) { this.direccion=direccion; }
+	 */
 	@Override
 	public String toString() {
 		return "Empleado [codigo=" + codigo + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNacimiento="

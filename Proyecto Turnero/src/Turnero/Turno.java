@@ -1,10 +1,18 @@
 package Turnero;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Turno {
 	private Cliente datos;
-	private Date fechaIngreso;
+	private String fechaIngreso;
+	
+	public Turno(Cliente datos, String fechaIngreso) {
+		
+		this.datos = datos;
+		this.fechaIngreso = fechaIngreso;
+	}
+
+
 
 	public Cliente getDatos() {
 		return datos;
@@ -14,12 +22,18 @@ public class Turno {
 		this.datos = datos;
 	}
 
-	public Date getFechaIngreso() {
+	
+
+	public String getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
+	public void setFechaIngreso(String date) {
+		this.fechaIngreso = date;
 	}
+
+	
+
+	
 
 }

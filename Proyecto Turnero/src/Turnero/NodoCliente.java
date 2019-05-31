@@ -1,14 +1,11 @@
 package Turnero;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 
 public class NodoCliente {
 	private Turno dato;
 	private NodoCliente enlace;
+    private int id;
 	
 	public NodoCliente(Turno dato) {
 		this.dato=dato;
@@ -29,6 +26,14 @@ public class NodoCliente {
 
 	public void setEnlace(NodoCliente enlace) {
 		this.enlace = enlace;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

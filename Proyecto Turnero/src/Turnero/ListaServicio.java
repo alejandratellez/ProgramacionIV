@@ -3,8 +3,7 @@ package Turnero;
 
 public class ListaServicio {
 
-	private NodoServicio cabeza;
-	
+	private NodoServicio cabeza;	
 	private NodoServicio actual;
 
 	public void insertarElemento(ListaCliente dato) {
