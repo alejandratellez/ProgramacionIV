@@ -1,15 +1,13 @@
-package Turnero;
+package Modelo;
 
-
-
-public class NodoCliente {
+public class NodoLlegada {
 	private Turno dato;
-	private NodoCliente enlace;
-    private int id;
-	
-	public NodoCliente(Turno dato) {
-		this.dato=dato;
-		this.enlace = null;		
+	private NodoLlegada enlace;
+	private int id;
+
+	public NodoLlegada(Turno dato) {
+		this.dato = dato;
+		this.enlace = null;
 	}
 
 	public Turno getDato() {
@@ -20,11 +18,11 @@ public class NodoCliente {
 		this.dato = dato;
 	}
 
-	public NodoCliente getEnlace() {
+	public NodoLlegada getEnlace() {
 		return enlace;
 	}
 
-	public void setEnlace(NodoCliente enlace) {
+	public void setEnlace(NodoLlegada enlace) {
 		this.enlace = enlace;
 	}
 
@@ -35,7 +33,5 @@ public class NodoCliente {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
 
 }

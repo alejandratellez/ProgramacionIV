@@ -1,12 +1,10 @@
 
-package Turnero;
-
-
+package Modelo;
 
 public class ListaLlegada {
 
-	private NodoCliente cabeza;
-	private NodoCliente actual;
+	private NodoLlegada cabeza;
+	private NodoLlegada actual;
 	private int Size;
 
 	public void insertarElemento(int id, String nombre, boolean prioridad, String servicio) {
@@ -14,7 +12,7 @@ public class ListaLlegada {
 		Cliente datosCliente = new Cliente(id, nombre, prioridad, servicio);
 		Turno dato = new Turno(datosCliente, fecha.getFecha());
 
-		NodoCliente nodo = new NodoCliente(dato);
+		NodoLlegada nodo = new NodoLlegada(dato);
 
 		if (cabeza == null) {
 
@@ -58,6 +56,22 @@ public class ListaLlegada {
 		Size = size;
 	}
 
+	/*
+	 * 
+	 * public NodoCliente[] listarElemento() { NodoCliente Lista [] = new
+	 * NodoCliente[this.Size]; //int Lista[] = new int[this.Size]; this.actual =
+	 * this.cabeza; int cont = 0;
+	 * 
+	 * while (this.actual != null) {
+	 * 
+	 * Lista[cont] = this.actual; System.out.println("Posicion " + Lista[cont] +
+	 * " La persona es: " + this.actual.getDato().getDatos().getNombre()); cont++;
+	 * this.actual = this.actual.getEnlace(); }
+	 * 
+	 * return Lista; }
+	 * 
+	 */
+
 	public int[] listarElemento() {
 
 		int Lista[] = new int[this.Size];
@@ -67,7 +81,8 @@ public class ListaLlegada {
 		while (this.actual != null) {
 
 			Lista[cont] = this.actual.getId();
-			System.out.println(Lista[cont]);
+			System.out.println(
+					"Posicion " + Lista[cont] + " La persona es: " + this.actual.getDato().getDatos().getNombre());
 			cont++;
 			this.actual = this.actual.getEnlace();
 		}
