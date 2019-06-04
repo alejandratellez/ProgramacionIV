@@ -23,9 +23,9 @@ class ListaServicioTest {
 		listaPrueba.insertarAlFinal(24548295, "Luz stella", true, "serv2");
 		listaPrueba.insertarAlFinal(123456, "Marcela", true, "serv1");
 
-		listaServicio.insertarElemento(listaPrueba,"serv1");
+		listaServicio.insertarElemento("serv1");
 
-		boolean resultadoObtenido = listaServicio.buscarElemento(listaPrueba);
+		boolean resultadoObtenido = listaServicio.buscarElemento("serv1");
 		assertEquals(resultadoEsperado, resultadoObtenido);
 
 	}
@@ -38,9 +38,9 @@ class ListaServicioTest {
 		listaPrueba.insertarAlFinal(24548295, "Luz stella", true, "serv2");
 		listaPrueba.insertarAlFinal(123456, "Marcela", true, "serv1");
 
-		listaServicio.insertarElemento(listaPrueba,"serv1");
-		listaServicio.insertarElemento(listaPrueba,"serv2");
-		listaServicio.insertarElemento(listaPrueba,"serv3");
+		listaServicio.insertarElemento("serv1");
+		listaServicio.insertarElemento("serv2");
+		listaServicio.insertarElemento("serv3");
 		int[] resultadoEsperado = { 0,1,2 };
 		int[] resultadoObtenido = listaServicio.listarElemento();
 		assertArrayEquals(resultadoEsperado, resultadoObtenido);

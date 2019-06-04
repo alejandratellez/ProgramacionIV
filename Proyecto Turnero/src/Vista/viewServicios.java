@@ -15,6 +15,9 @@ import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
+
+import Controlador.ControlServicios;
+
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
@@ -23,18 +26,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
-public class viewServicios extends JFrame {
-
-	private JButton convertirApesetas;
-	private JButton convertirAeuros;
+public class viewServicios extends JFrame implements IntViewServicios {
 
 	private JLabel resultado;
 	private JTextField textServicio;
-	private JTextField textField;
+	private JTextField textServ;
+	private JButton btnIngresarServ;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,17 +49,17 @@ public class viewServicios extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
 	public viewServicios() {
 		super("Ventana Servicios");
-		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panelPrincipal = new JPanel();
-		panelPrincipal.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		panelPrincipal.setBackground(Color.GRAY);
+		panelPrincipal.setLayout(new BorderLayout(10, 10));
+		//panelPrincipal.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		
 		panelPrincipal.setLayout(null);
 		JLabel lblTitulo = new JLabel("INGRESAR SERVICIOS");
 		lblTitulo.setForeground(Color.WHITE);
@@ -71,7 +73,7 @@ public class viewServicios extends JFrame {
 		panelAux.add(lblTitulo);
 		panelPrincipal.add(panelAux);
 
-		getContentPane().add(panelPrincipal);
+		
 
 		JPanel panelAux2 = new JPanel();
 		panelAux2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -83,15 +85,15 @@ public class viewServicios extends JFrame {
 		JLabel lblServicio = new JLabel("SERVICIO");
 		lblServicio.setBackground(Color.LIGHT_GRAY);
 		lblServicio.setBounds(94, 64, 98, 30);
-		lblServicio.setForeground(Color.WHITE);
+		lblServicio.setForeground(Color.BLACK);
 		lblServicio.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblServicio.setHorizontalAlignment(SwingConstants.CENTER);
 		panelAux2.add(lblServicio);
 
-		textField = new JTextField();
-		textField.setBounds(202, 64, 159, 30);
-		panelAux2.add(textField);
-		textField.setColumns(10);
+		textServ = new JTextField();
+		textServ.setBounds(202, 64, 159, 30);
+		panelAux2.add(textServ);
+		textServ.setColumns(10);
 
 		JPanel panelAux3 = new JPanel();
 		panelAux3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -100,14 +102,34 @@ public class viewServicios extends JFrame {
 		panelPrincipal.add(panelAux3);
 		panelAux3.setLayout(null);
 
-		JButton btnIngresarServ = new JButton("Ingresar Servicio");
-		btnIngresarServ.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnIngresarServ = new JButton("Ingresar Servicio");
+		
 
 		btnIngresarServ.setBounds(146, 11, 168, 36);
 		panelAux3.add(btnIngresarServ);
+		getContentPane().add(panelPrincipal);
+	}
 
+	
+	public void setControlador(ControlServicios controlServ) {
+		// TODO Auto-generated method stub
+		btnIngresarServ.addActionListener(controlServ);
+	}
+
+	
+	public void arranca() {
+		pack();// coloca los componentes
+		setLocationRelativeTo(null);// centra la ventana en la pantalla
+		setVisible(true);// visualiza la ventana
+	}
+
+	@Override
+	public String getServicio() {
+		try {
+			return  (textServ.getText());
+		} catch (NumberFormatException e) {
+			return null;
+		}
+		
 	}
 }

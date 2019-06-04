@@ -5,8 +5,8 @@ public class ListaServicio {
 	private NodoServicio actual;
 	private int Size;
 
-	public void insertarElemento(ListaCliente lista,String servicio) {
-
+	public void insertarElemento(String servicio) {
+		ListaCliente lista = new ListaCliente();
 		NodoServicio nodo = new NodoServicio(lista);
 		nodo.setServ(servicio);
 		if (cabeza == null) {
@@ -30,11 +30,11 @@ public class ListaServicio {
 		}
 	}
 
-	public boolean buscarElemento(ListaCliente lista) {
+	public boolean buscarElemento(String serv) {
 		this.actual = this.cabeza;
 		boolean encontrado = false;
 		while (this.actual != null && this.actual.getEnlace() != null || !encontrado) {
-			if (this.actual.getDato() == lista) {
+			if (this.actual.getServ().equals(serv)) {
 				encontrado = true;
 			}
 			this.actual = this.actual.getEnlace();
@@ -76,7 +76,7 @@ public class ListaServicio {
 		while (this.actual != null) {
 
 			Lista[cont] = this.actual.getId();
-			System.out.println("Posicion " + Lista[cont] + " La persona es: ");
+			System.out.println("Posicion " + Lista[cont] + " El servicio es: " + this.actual.getServ()+ "La lista es: " + this.actual.getDato().getSize());
 			cont++;
 			this.actual = this.actual.getEnlace();
 		}
