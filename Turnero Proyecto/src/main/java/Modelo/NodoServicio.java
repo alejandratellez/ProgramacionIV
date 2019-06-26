@@ -1,25 +1,49 @@
 package Modelo;
 
-public class NodoServicio {
+import java.io.Serializable;
 
-	private ListaCliente dato;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Servicio")
+public class NodoServicio implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private NodoServicio enlace;
-	private String serv;
+
+	@Id
 	private int id;
+
+	@Column(name = "nombre_servicio")
+	private String serv;
+	
+	
+	///private ListaCliente dato;
+
+	public NodoServicio() {
+	}
 
 	public NodoServicio(String dato) {
 		this.serv = dato;
-		this.enlace = null;
 	}
-
+/*
 	public ListaCliente getDato() {
-		return dato;
+		return this.dato;
 	}
 
 	public void setDato(ListaCliente dato) {
 		this.dato = dato;
 	}
-
+*/
 	public NodoServicio getEnlace() {
 		return enlace;
 	}
@@ -43,5 +67,5 @@ public class NodoServicio {
 	public void setServ(String serv) {
 		this.serv = serv;
 	}
-	
+
 }

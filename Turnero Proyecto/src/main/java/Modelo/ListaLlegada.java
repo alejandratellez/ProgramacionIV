@@ -1,15 +1,19 @@
+
 package Modelo;
 
-public class ListaServicio {
-	private NodoServicio cabeza;
-	private NodoServicio actual;
+public class ListaLlegada {
+
+	private NodoLlegada cabeza;
+	private NodoLlegada actual;
 	private int Size;
 
-	public void insertarElemento(String servicio) {
-		ListaCliente lista = new ListaCliente();
-		NodoServicio nodo = new NodoServicio(servicio);
-		nodo.setDato(lista);
-		nodo.setServ(servicio);
+	public void insertarElemento(int id, String nombre, boolean prioridad, String servicio) {
+		FechaString fecha = new FechaString();
+		Cliente datosCliente = new Cliente(id, nombre, prioridad, servicio);
+		Turno dato = new Turno(datosCliente, fecha.getFecha());
+
+		NodoLlegada nodo = new NodoLlegada(dato);
+
 		if (cabeza == null) {
 
 			nodo.setId(0);
@@ -31,11 +35,11 @@ public class ListaServicio {
 		}
 	}
 
-	public boolean buscarElemento(String serv) {
+	public boolean buscarElemento(int cedula) {
 		this.actual = this.cabeza;
 		boolean encontrado = false;
 		while (this.actual != null && this.actual.getEnlace() != null || !encontrado) {
-			if (this.actual.getServ().equals(serv)) {
+			if (this.actual.getDato().getDatos().getId() == cedula) {
 				encontrado = true;
 			}
 			this.actual = this.actual.getEnlace();
@@ -77,7 +81,8 @@ public class ListaServicio {
 		while (this.actual != null) {
 
 			Lista[cont] = this.actual.getId();
-			System.out.println("Posicion " + Lista[cont] + " El servicio es: " + this.actual.getServ()+ "La lista es: " + this.actual.getDato().getSize());
+			System.out.println(
+					"Posicion " + Lista[cont] + " La persona es: " + this.actual.getDato().getDatos().getNombre());
 			cont++;
 			this.actual = this.actual.getEnlace();
 		}

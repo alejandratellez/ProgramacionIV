@@ -112,7 +112,6 @@ public class viewServicios extends JFrame implements IntViewServicios {
 		setVisible(true);// visualiza la ventana
 	}
 
-	@Override
 	public String getServicio() {
 		try {
 			return (textServ.getText());

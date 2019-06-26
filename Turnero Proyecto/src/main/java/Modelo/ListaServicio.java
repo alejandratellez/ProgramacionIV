@@ -5,14 +5,15 @@ public class ListaServicio {
 	private NodoServicio actual;
 	private int Size;
 
-	public void insertarElemento(String servicio) {
-		ListaCliente lista = new ListaCliente();
+	public NodoServicio insertarElemento(String servicio) {
+		////ListaCliente lista = new ListaCliente();
 		NodoServicio nodo = new NodoServicio(servicio);
-		nodo.setDato(lista);
+		///nodo.setDato(lista);
 		nodo.setServ(servicio);
 		if (cabeza == null) {
 
 			nodo.setId(0);
+			nodo.setEnlace(null);
 			this.cabeza = nodo;
 			this.Size = 1;
 
@@ -24,11 +25,14 @@ public class ListaServicio {
 
 				cont = cont + 1;
 			}
+
 			nodo.setId(cont);
 			this.actual.setEnlace(nodo);
 			this.Size = this.Size + 1;
 
 		}
+
+		return nodo;
 	}
 
 	public boolean buscarElemento(String serv) {
@@ -77,11 +81,13 @@ public class ListaServicio {
 		while (this.actual != null) {
 
 			Lista[cont] = this.actual.getId();
-			System.out.println("Posicion " + Lista[cont] + " El servicio es: " + this.actual.getServ()+ "La lista es: " + this.actual.getDato().getSize());
+			System.out
+					.println("Posicion " + Lista[cont] + " El servicio es: " + this.actual.getServ() + "La lista es: ");
 			cont++;
 			this.actual = this.actual.getEnlace();
 		}
 
 		return Lista;
 	}
+
 }
