@@ -13,10 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
+import Controlador.ControlPrioridad;
 import Controlador.ControlServicios;
 
-public class viewServicios extends JFrame {
-	
+public class viewPrioridad extends JFrame {
 
 	/**
 	 * 
@@ -24,31 +24,40 @@ public class viewServicios extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField textServicio;
 	private JLabel resultado;
-	private JTextField textServ;
-	private JButton btnIngresarServ;
+	private JTextField textPriori;
+	private JButton btnIngresarPriori;
 
 	/**
 	 * Launch the application.
 	 */
-	/*
-	 * public static void main(String[] args) { EventQueue.invokeLater(new
-	 * Runnable() { public void run() { try { viewServicios frame = new
-	 * viewServicios(); frame.setVisible(true); } catch (Exception e) {
-	 * e.printStackTrace(); } } }); }
-	 */
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					viewPrioridad frame = new viewPrioridad();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	/**
 	 * Create the frame.
 	 */
-	public viewServicios() {
-		super("Ventana Servicios");
+	public viewPrioridad() {
+		super("Ventana Prioridad");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(500, 200, 490, 370);
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BorderLayout(640, 480));
 		// panelPrincipal.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0,
 		// 0)));
 
 		panelPrincipal.setLayout(null);
-		JLabel lblTitulo = new JLabel("INGRESAR SERVICIOS");
+		JLabel lblTitulo = new JLabel("INGRESAR PRIORIDAD");
 		lblTitulo.setForeground(Color.WHITE);
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblTitulo.setBackground(Color.WHITE);
@@ -67,19 +76,19 @@ public class viewServicios extends JFrame {
 		panelPrincipal.add(panelAux2);
 		panelAux2.setLayout(null);
 
-		JLabel lblServicio = new JLabel("SERVICIO");
-		lblServicio.setBackground(Color.LIGHT_GRAY);
-		lblServicio.setBounds(93, 39, 98, 30);
-		lblServicio.setForeground(Color.BLACK);
-		lblServicio.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblServicio.setHorizontalAlignment(SwingConstants.CENTER);
-		panelAux2.add(lblServicio);
+		JLabel lblPriori = new JLabel("PRIORIDAD");
+		lblPriori.setBackground(Color.LIGHT_GRAY);
+		lblPriori.setBounds(93, 39, 98, 30);
+		lblPriori.setForeground(Color.BLACK);
+		lblPriori.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblPriori.setHorizontalAlignment(SwingConstants.CENTER);
+		panelAux2.add(lblPriori);
 
-		textServ = new JTextField();
-		textServ.setBounds(201, 39, 159, 30);
-		panelAux2.add(textServ);
-		textServ.setColumns(10);
-		
+		textPriori = new JTextField();
+		textPriori.setBounds(201, 39, 159, 30);
+		panelAux2.add(textPriori);
+		textPriori.setColumns(10);
+
 		resultado = new JLabel("Mensaje");
 		resultado.setEnabled(false);
 		resultado.setVisible(false);
@@ -93,17 +102,17 @@ public class viewServicios extends JFrame {
 		panelPrincipal.add(panelAux3);
 		panelAux3.setLayout(null);
 
-		btnIngresarServ = new JButton("Ingresar Servicio");
+		btnIngresarPriori = new JButton("Ingresar Prioridad");
 
-		btnIngresarServ.setBounds(146, 11, 168, 36);
-		panelAux3.add(btnIngresarServ);
+		btnIngresarPriori.setBounds(146, 11, 168, 36);
+		panelAux3.add(btnIngresarPriori);
 		getContentPane().add(panelPrincipal);
 	}
 
-	public void setControlador(ControlServicios controlServ) {
+	public void setControlador(ControlPrioridad controlServ) {
 		// TODO Auto-generated method stub
-		btnIngresarServ.addActionListener(controlServ);
-	
+		btnIngresarPriori.addActionListener(controlServ);
+
 	}
 
 	public void arranca() {
@@ -113,15 +122,15 @@ public class viewServicios extends JFrame {
 		setVisible(true);// visualiza la ventana
 	}
 
-	public String getServicio() {
+	public String getPrioridad() {
 		try {
-			return (textServ.getText());
+			return (textPriori.getText());
 		} catch (NumberFormatException e) {
 			return null;
 		}
 
 	}
-	
+
 	public void escribeCambio(String s) {
 		resultado.setVisible(true);
 		resultado.setEnabled(true);

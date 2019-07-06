@@ -2,6 +2,8 @@
 package Modelo;
 
 public class ListaLlegada {
+	
+	/*
 
 	private NodoLlegada cabeza;
 	private NodoLlegada actual;
@@ -70,7 +72,7 @@ public class ListaLlegada {
 	 * 
 	 * return Lista; }
 	 * 
-	 */
+	 
 
 	public int[] listarElemento() {
 
@@ -89,4 +91,5 @@ public class ListaLlegada {
 
 		return Lista;
 	}
+	*/
 }

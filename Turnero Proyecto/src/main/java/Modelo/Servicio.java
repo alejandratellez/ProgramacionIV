@@ -1,55 +1,48 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Servicio")
-public class NodoServicio implements Serializable {
+public class Servicio implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
-	private NodoServicio enlace;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "nombre_servicio")
 	private String serv;
-	
-	
-	///private ListaCliente dato;
 
-	public NodoServicio() {
+	@OneToMany
+	private List<Cliente> dato;
+
+	public Servicio() {
 	}
 
-	public NodoServicio(String dato) {
+	public Servicio(String dato) {
 		this.serv = dato;
 	}
-/*
-	public ListaCliente getDato() {
-		return this.dato;
+
+	public List<Cliente> getDato() {
+		return dato;
 	}
 
-	public void setDato(ListaCliente dato) {
+	public void setDato(List<Cliente> dato) {
 		this.dato = dato;
-	}
-*/
-	public NodoServicio getEnlace() {
-		return enlace;
-	}
-
-	public void setEnlace(NodoServicio enlace) {
-		this.enlace = enlace;
 	}
 
 	public int getId() {

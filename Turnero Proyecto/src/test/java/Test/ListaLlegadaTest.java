@@ -12,6 +12,7 @@ import Modelo.ListaLlegada;
 
 
 public class ListaLlegadaTest {
+	/*
 	ListaLlegada listaPrueba = new ListaLlegada();
 
 	@Test
@@ -46,5 +47,5 @@ public class ListaLlegadaTest {
 		int[] resultadoEsperado = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		int[] resultadoObtenido = listaPrueba.listarElemento();
 		assertArrayEquals(resultadoEsperado, resultadoObtenido);
-	}
+	}*/
 }

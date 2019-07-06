@@ -1,24 +1,30 @@
 package Modelo;
 
+import java.util.List;
+
 public class ListaServicio {
-	private NodoServicio cabeza;
-	private NodoServicio actual;
+	/*
+	private Servicio cabeza;
+	private Servicio actual;
 	private int Size;
 
-	public NodoServicio insertarElemento(String servicio) {
-		////ListaCliente lista = new ListaCliente();
-		NodoServicio nodo = new NodoServicio(servicio);
-		///nodo.setDato(lista);
+	public Servicio insertarElemento(String servicio) {
+		 List<Persona> listaPersona = null;
+		
+		 
+		Servicio nodo = new Servicio(servicio);
+		nodo.setDato(listaPersona);
 		nodo.setServ(servicio);
+		
 		if (cabeza == null) {
 
-			nodo.setId(0);
+			nodo.setId(1);
 			nodo.setEnlace(null);
 			this.cabeza = nodo;
 			this.Size = 1;
 
 		} else {
-			int cont = 1;
+			int cont = 2;
 			this.actual = this.cabeza;
 			while (this.actual.getEnlace() != null) {
 				this.actual = this.actual.getEnlace();
@@ -56,7 +62,7 @@ public class ListaServicio {
 		Size = size;
 	}
 
-	/*
+
 	 * 
 	 * public NodoCliente[] listarElemento() { NodoCliente Lista [] = new
 	 * NodoCliente[this.Size]; //int Lista[] = new int[this.Size]; this.actual =
@@ -70,7 +76,7 @@ public class ListaServicio {
 	 * 
 	 * return Lista; }
 	 * 
-	 */
+	
 
 	public int[] listarElemento() {
 
@@ -89,5 +95,5 @@ public class ListaServicio {
 
 		return Lista;
 	}
-
+*/
 }

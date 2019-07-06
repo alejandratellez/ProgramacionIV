@@ -1,9 +1,9 @@
 package Modelo;
 
 public class ListaCliente {
+	/*
 	private NodoCliente cabeza;
 	private NodoCliente actual;
-	private NodoCliente anterior;
 	private int Size;
 
 	public void insertarAlInicio(int id, String nombre, boolean prioridad, String servicio) {
@@ -103,5 +103,5 @@ public class ListaCliente {
 		}
 
 		return Lista;
-	}
+	}*/
 }

@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Asesor extends Persona {
+public class Asesor {
 	private String serv1;
 	private String serv2;
 	private String serv3;

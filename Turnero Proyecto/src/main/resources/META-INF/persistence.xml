@@ -7,7 +7,16 @@
 
 	<persistence-unit name="Turnero">
 	<class>
-	Modelo.NodoServicio
+	Modelo.Servicio
+	</class>
+	<class>
+	Modelo.Persona
+	</class>
+	<class>
+	Modelo.Cliente
+	</class>
+	<class>
+	Modelo.Prioridad
 	</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
