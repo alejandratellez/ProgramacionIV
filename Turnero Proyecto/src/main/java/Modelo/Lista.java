@@ -9,7 +9,7 @@ public class Lista {
 
 	public Servicio insertarServicio(String nombreServicio) {
 		Servicio servicio = new Servicio(nombreServicio);
-		servicio.setDato(null);
+		servicio.setCliente(null);
 		listaServicios.add(servicio);
 		return servicio;
 	}

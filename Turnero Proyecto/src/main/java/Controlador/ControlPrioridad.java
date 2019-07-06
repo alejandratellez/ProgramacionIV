@@ -64,7 +64,7 @@ public class ControlPrioridad implements ActionListener {
 
 		} catch (NullPointerException e ) {
 			priori=new Prioridad("no");
-			return priori;
+			return null;
 		}catch (ArrayIndexOutOfBoundsException a) {
 			priori=new Prioridad("no");
 			return priori;

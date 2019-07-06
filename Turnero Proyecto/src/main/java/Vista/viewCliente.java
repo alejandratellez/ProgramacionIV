@@ -13,12 +13,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
+import Controlador.ControlCliente;
+import Controlador.ControlPrioridad;
 import Controlador.ControlServicios;
+import Modelo.Prioridad;
 import Modelo.Servicio;
 
 import javax.swing.JComboBox;
 
-public class viewCliente extends JFrame  {
+public class viewCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel resultado;
@@ -114,9 +117,10 @@ public class viewCliente extends JFrame  {
 		textDocumento.setBounds(170, 52, 159, 30);
 		panelAux2.add(textDocumento);
 
-		 cbxServicio = new JComboBox<String>();
+		cbxServicio = new JComboBox<String>();
 		cbxServicio.setBounds(171, 96, 159, 24);
 		panelAux2.add(cbxServicio);
+
 		ControlServicios servicios = new ControlServicios();
 		List<Servicio> items;
 		cbxServicio.addItem(" ");
@@ -125,8 +129,7 @@ public class viewCliente extends JFrame  {
 			cbxServicio.addItem(items.get(i).getServ());
 		}
 
-
-        cbxPrioridad = new JComboBox<String>();
+		cbxPrioridad = new JComboBox<String>();
 		cbxPrioridad.setBounds(171, 137, 158, 24);
 		panelAux2.add(cbxPrioridad);
 
@@ -134,11 +137,13 @@ public class viewCliente extends JFrame  {
 		resultado.setEnabled(false);
 		resultado.setBounds(103, 180, 287, 14);
 		panelAux2.add(resultado);
+		ControlPrioridad prioridad = new ControlPrioridad();
+		List<Prioridad> itemsPrioridad;
 		cbxPrioridad.addItem(" ");
-		cbxPrioridad.addItem("Ninguna");
-		cbxPrioridad.addItem("Mujer embarazada");
-		cbxPrioridad.addItem("Tercera Edad");
-		cbxPrioridad.addItem("Limitaciones");
+		itemsPrioridad = prioridad.listarPrioridad();
+		for (int i = 0; i < itemsPrioridad.size(); i++) {
+			cbxPrioridad.addItem(itemsPrioridad.get(i).getPrioridad());
+		}
 
 		JPanel panelAux3 = new JPanel();
 		panelAux3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -153,9 +158,9 @@ public class viewCliente extends JFrame  {
 		getContentPane().add(panelPrincipal);
 	}
 
-	public void setControlador(ControlServicios controlServ) {
+	public void setControlador(ControlCliente controlCliente) {
 		// TODO Auto-generated method stub
-		btnIngresarDatos.addActionListener(controlServ);
+		btnIngresarDatos.addActionListener(controlCliente);
 
 	}
 
@@ -166,15 +171,40 @@ public class viewCliente extends JFrame  {
 		setVisible(true);// visualiza la ventana
 	}
 
-
-
 	public String getNombre() {
-		return null;
+		try {
+			return (textNombre.getText());
+		} catch (NumberFormatException e) {
+			return null;
+		}
 
 	}
 
-	public boolean getPrioridad() {
-		return rootPaneCheckingEnabled;
+	public String getDocumento() {
+		try {
+			return (textDocumento.getText());
+		} catch (NumberFormatException e) {
+			return null;
+		}
+
+	}
+
+	public String getPrioridad() {
+		try {
+			return (cbxPrioridad.getActionCommand());
+		} catch (NumberFormatException e) {
+			return null;
+		}
+
+	}
+
+	public String getServicio() {
+		try {
+			String servicio= (String) cbxServicio.getSelectedItem();
+			return (servicio);
+		} catch (NumberFormatException e) {
+			return null;
+		}
 
 	}
 
@@ -182,8 +212,4 @@ public class viewCliente extends JFrame  {
 		resultado.setText(s);
 	}
 
-	public String getServicio() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -15,14 +15,19 @@ public class ProgramaTurnero {
 
 		viewServicios vista = new viewServicios();
 		viewPrioridad vistaPrioridad=new viewPrioridad();
+		viewCliente vistaCliente = new viewCliente();
 
 		ControlServicios control = new ControlServicios(vista, modelo);
 		ControlPrioridad controlPrioridad= new ControlPrioridad(vistaPrioridad);
+		ControlCliente controlCliente = new ControlCliente (vistaCliente);
+		
 		vista.setControlador(control);
 		vistaPrioridad.setControlador(controlPrioridad);
+		vistaCliente.setControlador(controlCliente);
 		
 		//vistaCliente.setControlador(control);
 		vista.arranca();
+		vistaCliente.arranca();
 		vistaPrioridad.arranca();
 		
 		

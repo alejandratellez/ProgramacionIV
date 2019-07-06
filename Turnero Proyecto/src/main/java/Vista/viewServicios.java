@@ -16,7 +16,6 @@ import javax.swing.border.MatteBorder;
 import Controlador.ControlServicios;
 
 public class viewServicios extends JFrame {
-	
 
 	/**
 	 * 
@@ -79,7 +78,7 @@ public class viewServicios extends JFrame {
 		textServ.setBounds(201, 39, 159, 30);
 		panelAux2.add(textServ);
 		textServ.setColumns(10);
-		
+
 		resultado = new JLabel("Mensaje");
 		resultado.setEnabled(false);
 		resultado.setVisible(false);
@@ -103,7 +102,7 @@ public class viewServicios extends JFrame {
 	public void setControlador(ControlServicios controlServ) {
 		// TODO Auto-generated method stub
 		btnIngresarServ.addActionListener(controlServ);
-	
+
 	}
 
 	public void arranca() {
@@ -121,7 +120,7 @@ public class viewServicios extends JFrame {
 		}
 
 	}
-	
+
 	public void escribeCambio(String s) {
 		resultado.setVisible(true);
 		resultado.setEnabled(true);

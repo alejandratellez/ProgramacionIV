@@ -37,11 +37,11 @@ public class Servicio implements Serializable {
 		this.serv = dato;
 	}
 
-	public List<Cliente> getDato() {
+	public List<Cliente> getCliente() {
 		return dato;
 	}
 
-	public void setDato(List<Cliente> dato) {
+	public void setCliente(List<Cliente> dato) {
 		this.dato = dato;
 	}
 
