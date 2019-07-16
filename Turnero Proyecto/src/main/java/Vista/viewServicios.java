@@ -2,7 +2,7 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +17,7 @@ import javax.swing.border.MatteBorder;
 
 import Controlador.ControlServicios;
 import Controlador.Controller;
-import Modelo.Prioridad;
+
 import Modelo.Servicio;
 
 public class viewServicios extends JFrame {
@@ -26,12 +26,12 @@ public class viewServicios extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textServicio;
 	private JLabel resultado;
 	private JTextField textServ;
 	private JButton btnIngresarServ;
 	public Controller controlador = new Controller();
 	public Servicio servicio = new Servicio();
+
 	/**
 	 * Launch the application.
 	 */
@@ -104,18 +104,16 @@ public class viewServicios extends JFrame {
 		btnIngresarServ.setBounds(146, 11, 168, 36);
 		panelAux3.add(btnIngresarServ);
 		getContentPane().add(panelPrincipal);
-		
+
 		btnIngresarServ.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {	
+			public void actionPerformed(ActionEvent arg0) {
 				/*
-				resultado.setText(controlador.guardarServicio(textServ.getText()));	
-				resultado.setVisible(true);
-				resultado.setEnabled(true);
-				*/
-				
+				 * resultado.setText(controlador.guardarServicio(textServ.getText()));
+				 * resultado.setVisible(true); resultado.setEnabled(true);
+				 */
+
 				String serv;
 				serv = textServ.getText().toUpperCase();
-				
 
 				if (serv.length() == 0) {
 					resultado.setVisible(true);
@@ -125,17 +123,17 @@ public class viewServicios extends JFrame {
 				} else if (controlador.consultarServicioNombre(serv).getServ().toUpperCase().equals(serv)) {
 					resultado.setVisible(true);
 					resultado.setEnabled(true);
-					resultado.setText("El servicio " + " ' " + servicio.getServ() + " ' " + " YA FUE INGRESADO" );
+					resultado.setText("El servicio " + " ' " + serv + " ' " + " YA FUE INGRESADO");
 
 				} else {
 					servicio.setServ(serv);
 					controlador.crearServicio(servicio);
 					resultado.setVisible(true);
 					resultado.setEnabled(true);
-					resultado.setText("El servicio" + " ' " + servicio.getServ() + " ' "+  " fue ingresado CORRECTAMENTE");
+					resultado.setText(
+							"El servicio" + " ' " + servicio.getServ() + " ' " + " fue ingresado CORRECTAMENTE");
 					textServ.setText(null);
-					
-					
+
 				}
 			}
 
@@ -155,6 +153,7 @@ public class viewServicios extends JFrame {
 		this.setLocation(580, 200);
 		setVisible(true);// visualiza la ventana
 	}
+
 	public String getServicio() {
 		try {
 			return (textServ.getText());

@@ -1,6 +1,5 @@
 package Vista;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -16,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import Controlador.Controller;
-import Modelo.Cliente;
 import Modelo.Prioridad;
 
 public class viewPrioridad extends JFrame {
@@ -25,7 +23,6 @@ public class viewPrioridad extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textServicio;
 	private JLabel resultado;
 	private JTextField textPriori;
 	private JButton btnIngresarPriori;
@@ -126,7 +123,7 @@ public class viewPrioridad extends JFrame {
 				 * textPriori.setText(null);
 				 */
 				String priori;
-				priori = textPriori.getText();
+				priori = textPriori.getText().toUpperCase();
 				
 
 				if (priori.length() == 0) {
@@ -134,13 +131,13 @@ public class viewPrioridad extends JFrame {
 					resultado.setEnabled(true);
 					resultado.setText("Por favor ingrese una Prioridad");
 
-				} else if (controlador.consultarPrioridad(priori).getPrioridad().equals(priori)) {
+				} else if (controlador.consultarPrioridad(priori).getPrioridad().toUpperCase().equals(priori)) {
 					resultado.setVisible(true);
 					resultado.setEnabled(true);
-					resultado.setText("La prioridad" + " ' " + prioridad.getPrioridad() + " ' "+  " YA FUE INGRESADA");
+					resultado.setText("La prioridad" + " ' " + priori + " ' "+  " YA FUE INGRESADA");
 
 				} else {
-					prioridad.setPrioridad(textPriori.getText());
+					prioridad.setPrioridad(priori);
 					controlador.crearPrioridad(prioridad);
 					resultado.setVisible(true);
 					resultado.setEnabled(true);
