@@ -22,10 +22,10 @@ public class ProgramaTurnero {
 		ControlCliente controlCliente = new ControlCliente (vistaCliente);
 		
 		vista.setControlador(control);
-		vistaPrioridad.setControlador(controlPrioridad);
-		vistaCliente.setControlador(controlCliente);
+		//vistaPrioridad.setControlador(controlPrioridad);
+		//vistaCliente.setControlador(controlCliente);
 		
-		//vistaCliente.setControlador(control);
+		
 		vista.arranca();
 		vistaCliente.arranca();
 		vistaPrioridad.arranca();

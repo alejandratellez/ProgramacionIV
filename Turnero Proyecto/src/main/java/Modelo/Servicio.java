@@ -27,8 +27,7 @@ public class Servicio implements Serializable {
 	@Column(name = "nombre_servicio")
 	private String serv;
 
-	@OneToMany
-	private List<Cliente> dato;
+	
 
 	public Servicio() {
 	}
@@ -37,13 +36,7 @@ public class Servicio implements Serializable {
 		this.serv = dato;
 	}
 
-	public List<Cliente> getCliente() {
-		return dato;
-	}
 
-	public void setCliente(List<Cliente> dato) {
-		this.dato = dato;
-	}
 
 	public int getId() {
 		return id;

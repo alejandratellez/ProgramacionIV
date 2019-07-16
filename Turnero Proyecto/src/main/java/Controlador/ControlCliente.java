@@ -30,6 +30,7 @@ public class ControlCliente implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+/*
 		EntityManager em = getEntityManager();
 		// TODO Auto-generated method stub
 		String servicio = vista.getServicio();
@@ -37,23 +38,15 @@ public class ControlCliente implements ActionListener {
 		String nombre = vista.getNombre();
 		int Documento = Integer.parseInt(vista.getDocumento());
 
-		Cliente nodoCliente = new Cliente();
-		if (prioridad == "No tiene") {
-			nodoCliente.setPrioridad(false);
-		} else {
-			nodoCliente.setPrioridad(true);
-		}
-		
-		nodoCliente.setServicio(servicio);
-		nodoCliente.setId(Documento);
-		nodoCliente.setNombre(nombre);
-		
+		Cliente nodoCliente = new Cliente(Documento, nombre, prioridad, servicio);
+
 		em.getTransaction().begin();
-	
+
 		nodoCliente = em.merge(nodoCliente);
 		em.getTransaction().commit();
 		em.close();
 		vista.escribeCambio("su Turno es x");
+*/
 	}
 
 }

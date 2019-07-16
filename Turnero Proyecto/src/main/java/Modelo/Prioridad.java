@@ -24,8 +24,7 @@ public class Prioridad 	implements Serializable {
 		@Column(name = "nombre_Prioridad")
 		private String prioridad;
 
-		@OneToMany
-		private List<Cliente> dato;
+	
 
 		public Prioridad() {
 		}
@@ -34,13 +33,7 @@ public class Prioridad 	implements Serializable {
 			this.prioridad = dato;
 		}
 
-		public List<Cliente> getCliente() {
-			return dato;
-		}
-
-		public void setCliente(List<Cliente> dato) {
-			this.dato = dato;
-		}
+		
 
 		public int getId() {
 			return id;

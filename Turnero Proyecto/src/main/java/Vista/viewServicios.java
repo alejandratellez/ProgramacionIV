@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +16,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import Controlador.ControlServicios;
+import Controlador.Controller;
+import Modelo.Prioridad;
+import Modelo.Servicio;
 
 public class viewServicios extends JFrame {
 
@@ -25,7 +30,8 @@ public class viewServicios extends JFrame {
 	private JLabel resultado;
 	private JTextField textServ;
 	private JButton btnIngresarServ;
-
+	public Controller controlador = new Controller();
+	public Servicio servicio = new Servicio();
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +46,7 @@ public class viewServicios extends JFrame {
 	 */
 	public viewServicios() {
 		super("Ventana Servicios");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setLayout(new BorderLayout(640, 480));
 		// panelPrincipal.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0,
@@ -80,9 +86,10 @@ public class viewServicios extends JFrame {
 		textServ.setColumns(10);
 
 		resultado = new JLabel("Mensaje");
+		resultado.setHorizontalAlignment(SwingConstants.CENTER);
 		resultado.setEnabled(false);
 		resultado.setVisible(false);
-		resultado.setBounds(106, 102, 254, 14);
+		resultado.setBounds(31, 103, 368, 14);
 		panelAux2.add(resultado);
 
 		JPanel panelAux3 = new JPanel();
@@ -97,6 +104,42 @@ public class viewServicios extends JFrame {
 		btnIngresarServ.setBounds(146, 11, 168, 36);
 		panelAux3.add(btnIngresarServ);
 		getContentPane().add(panelPrincipal);
+		
+		btnIngresarServ.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {	
+				/*
+				resultado.setText(controlador.guardarServicio(textServ.getText()));	
+				resultado.setVisible(true);
+				resultado.setEnabled(true);
+				*/
+				
+				String serv;
+				serv = textServ.getText().toUpperCase();
+				
+
+				if (serv.length() == 0) {
+					resultado.setVisible(true);
+					resultado.setEnabled(true);
+					resultado.setText("Por favor ingrese un Servicio");
+
+				} else if (controlador.consultarServicioNombre(serv).getServ().toUpperCase().equals(serv)) {
+					resultado.setVisible(true);
+					resultado.setEnabled(true);
+					resultado.setText("El servicio " + " ' " + servicio.getServ() + " ' " + " YA FUE INGRESADO" );
+
+				} else {
+					servicio.setServ(serv);
+					controlador.crearServicio(servicio);
+					resultado.setVisible(true);
+					resultado.setEnabled(true);
+					resultado.setText("El servicio" + " ' " + servicio.getServ() + " ' "+  " fue ingresado CORRECTAMENTE");
+					textServ.setText(null);
+					
+					
+				}
+			}
+
+		});
 	}
 
 	public void setControlador(ControlServicios controlServ) {
@@ -109,9 +152,9 @@ public class viewServicios extends JFrame {
 		pack();// coloca los componentes
 		setLocationRelativeTo(null);// centra la ventana en la pantalla
 		this.setBounds(500, 200, 490, 370);
+		this.setLocation(580, 200);
 		setVisible(true);// visualiza la ventana
 	}
-
 	public String getServicio() {
 		try {
 			return (textServ.getText());

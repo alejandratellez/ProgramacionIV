@@ -1,11 +1,16 @@
 package Modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "Cliente")
@@ -13,6 +18,17 @@ public class Cliente {
 
 	@Id
 	private int id;
+	
+	@Column(name = "nombre_Persona")
+	private String nombre;
+	
+
+	
+	@ManyToMany
+	private List<Servicio> servicio;
+	
+	@ManyToMany
+	private List<Prioridad> prioridad;
 
 	public int getId() {
 		return id;
@@ -30,38 +46,44 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "nombre_Persona")
-	private String nombre;
-	@Column(name = "prioridad")
-	private boolean prioridad;
-	@Column(name = "servicio")
-	private String Servicio;
+	
 
 	public Cliente() {
 
 	}
 
-	public Cliente(int id, String nombre, boolean prioridad, String servicio) {
+	public Cliente(int id, String nombre, Prioridad prioridad, Servicio servicio) {
+		
+		
 		this.id = id;
 		this.nombre = nombre;
-		this.prioridad = prioridad;
-		this.Servicio = servicio;
+		this.prioridad.add(prioridad);
+		this.servicio.add(servicio);
 	}
 
-	public boolean getPrioridad() {
+	public List<Servicio> getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(List<Servicio> servicio) {
+		this.servicio = servicio;
+	}
+
+	public List<Prioridad> getPrioridad() {
 		return prioridad;
 	}
 
-	public void setPrioridad(boolean prioridad) {
+	public void setPrioridad(List<Prioridad> prioridad) {
 		this.prioridad = prioridad;
 	}
 
-	public String getServicio() {
-		return Servicio;
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", servicio=" + servicio + ", prioridad=" + prioridad + "]";
 	}
 
-	public void setServicio(String servicio) {
-		Servicio = servicio;
-	}
+	
+
+
 
 }

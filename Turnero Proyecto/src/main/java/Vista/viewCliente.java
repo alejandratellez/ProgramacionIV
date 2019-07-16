@@ -3,6 +3,9 @@ package Vista;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -16,6 +19,8 @@ import javax.swing.border.MatteBorder;
 import Controlador.ControlCliente;
 import Controlador.ControlPrioridad;
 import Controlador.ControlServicios;
+import Controlador.Controller;
+import Modelo.Cliente;
 import Modelo.Prioridad;
 import Modelo.Servicio;
 
@@ -30,6 +35,8 @@ public class viewCliente extends JFrame {
 	private JTextField textDocumento;
 	private JComboBox<String> cbxServicio;
 	private JComboBox<String> cbxPrioridad;
+	public Controller controlador = new Controller();
+	public Cliente cliente = new Cliente();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -121,10 +128,10 @@ public class viewCliente extends JFrame {
 		cbxServicio.setBounds(171, 96, 159, 24);
 		panelAux2.add(cbxServicio);
 
-		ControlServicios servicios = new ControlServicios();
+		
 		List<Servicio> items;
 		cbxServicio.addItem(" ");
-		items = servicios.listarServicios();
+		items = controlador.listarServicios();
 		for (int i = 0; i < items.size(); i++) {
 			cbxServicio.addItem(items.get(i).getServ());
 		}
@@ -134,13 +141,15 @@ public class viewCliente extends JFrame {
 		panelAux2.add(cbxPrioridad);
 
 		resultado = new JLabel("Mensaje");
+		resultado.setHorizontalAlignment(SwingConstants.CENTER);
 		resultado.setEnabled(false);
-		resultado.setBounds(103, 180, 287, 14);
+		resultado.setVisible(false);
+		resultado.setBounds(41, 180, 384, 14);
 		panelAux2.add(resultado);
-		ControlPrioridad prioridad = new ControlPrioridad();
+		
 		List<Prioridad> itemsPrioridad;
 		cbxPrioridad.addItem(" ");
-		itemsPrioridad = prioridad.listarPrioridad();
+		itemsPrioridad = controlador.listarPrioridad();
 		for (int i = 0; i < itemsPrioridad.size(); i++) {
 			cbxPrioridad.addItem(itemsPrioridad.get(i).getPrioridad());
 		}
@@ -156,12 +165,41 @@ public class viewCliente extends JFrame {
 		btnIngresarDatos.setBounds(171, 11, 168, 36);
 		panelAux3.add(btnIngresarDatos);
 		getContentPane().add(panelPrincipal);
+
+		btnIngresarDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				cliente.setId(Integer.parseInt(textDocumento.getText()));
+				cliente.setNombre(textNombre.getText());
+				Servicio servicio = new Servicio();
+				Prioridad prioridad = new Prioridad();
+				cliente.setServicio(new ArrayList<Servicio>());
+				cliente.setPrioridad(new ArrayList<Prioridad>());
+
+				servicio = controlador.consultarServicioNombre((String) cbxServicio.getSelectedItem());
+				prioridad = controlador.consultarPrioridad((String) cbxPrioridad.getSelectedItem());
+
+				cliente.getServicio().add(controlador.consultarServicio(servicio.getId()));
+				cliente.getPrioridad().add(controlador.consultarPrioridad(prioridad.getId()));
+
+				controlador.guardarUsuario(cliente);
+
+				resultado.setVisible(true);
+				resultado.setEnabled(true);
+				resultado.setText("Su turno es x");
+
+				textNombre.setText(null);
+				textDocumento.setText(null);
+
+			}
+
+		});
 	}
 
-	public void setControlador(ControlCliente controlCliente) {
+	public void setControlador(Controller controlCliente) {
 		// TODO Auto-generated method stub
-		btnIngresarDatos.addActionListener(controlCliente);
-
+		// btnIngresarDatos.addActionListener(controlCliente);
+		this.controlador = controlCliente;
 	}
 
 	public void arranca() {
@@ -191,7 +229,8 @@ public class viewCliente extends JFrame {
 
 	public String getPrioridad() {
 		try {
-			return (cbxPrioridad.getActionCommand());
+			String servicio = (String) cbxPrioridad.getSelectedItem();
+			return (servicio);
 		} catch (NumberFormatException e) {
 			return null;
 		}
@@ -200,7 +239,7 @@ public class viewCliente extends JFrame {
 
 	public String getServicio() {
 		try {
-			String servicio= (String) cbxServicio.getSelectedItem();
+			String servicio = (String) cbxServicio.getSelectedItem();
 			return (servicio);
 		} catch (NumberFormatException e) {
 			return null;

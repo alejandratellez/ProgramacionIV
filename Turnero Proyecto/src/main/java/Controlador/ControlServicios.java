@@ -16,7 +16,6 @@ import Modelo.Lista;
 import Modelo.ListaServicio;
 import Modelo.Servicio;
 
-
 import Vista.viewServicios;
 
 public class ControlServicios implements ActionListener {
@@ -53,16 +52,14 @@ public class ControlServicios implements ActionListener {
 		Servicio serv;
 		EntityManager em = getEntityManager();
 
-		Query query = em.createQuery("SELECT s FROM Servicio s WHERE s.serv = '" + servicio + "'" );
+		Query query = em.createQuery("SELECT s FROM Servicio s WHERE s.serv = '" + servicio + "'");
 		List<Servicio> resp = (List<Servicio>) query.getResultList();
-		if (resp.size()!=0) {
-			 serv = resp.get(0);
+		if (resp.size() != 0) {
+			serv = resp.get(0);
+		} else {
+
+			serv = new Servicio("no");
 		}
-		else {
-			
-			serv=new Servicio("no");
-		}
-		
 
 		em.close();
 		return serv;
@@ -80,11 +77,11 @@ public class ControlServicios implements ActionListener {
 
 		} else if (consultarServicio(servicio).getServ().equals(servicio)) {
 			String servprueba;
-			servprueba=consultarServicio(servicio).getServ();
-			System.out.println(servprueba + "El id es" +consultarServicio(servicio).getId() + "El Servicio es duplicado");
+			servprueba = consultarServicio(servicio).getServ();
+			System.out.println(
+					servprueba + "El id es" + consultarServicio(servicio).getId() + "El Servicio es duplicado");
 			vista.escribeCambio("El servicio esta duplicado");
-		}
-			else {
+		} else {
 			em.getTransaction().begin();
 			nodoServicio = em.merge(nodoServicio);
 			em.getTransaction().commit();
@@ -92,8 +89,7 @@ public class ControlServicios implements ActionListener {
 			vista.escribeCambio("Se ingreso correctamente el servicio");
 			nodoServicio = modelo.insertarServicio(servicio);
 			modelo.mostrarElementos();
-			}
-		
+		}
 
 	}
 
