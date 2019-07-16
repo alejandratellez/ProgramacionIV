@@ -53,6 +53,7 @@ public class viewCliente extends JFrame {
 
 	public viewCliente() {
 		super("Ventana Servicios");
+		setTitle("Ventana Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// this.setExtendedState(JFrame.NORMAL);
 
@@ -206,6 +207,7 @@ public class viewCliente extends JFrame {
 		pack();// coloca los componentes
 		setLocationRelativeTo(null);// centra la ventana en la pantalla
 		this.setBounds(500, 200, 490, 370);
+		this.setLocation(580, 200);
 		setVisible(true);// visualiza la ventana
 	}
 

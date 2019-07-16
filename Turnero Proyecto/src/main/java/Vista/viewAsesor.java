@@ -18,9 +18,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import Controlador.Controller;
+import Modelo.Asesor;
 import Modelo.Cliente;
 import Modelo.Prioridad;
 import Modelo.Servicio;
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
 
 public class viewAsesor extends JFrame {
 
@@ -29,10 +32,12 @@ public class viewAsesor extends JFrame {
 	private JTextField textNombre;
 	private JButton btnIngresarDatos;
 	private JTextField textDocumento;
-	private JComboBox<String> cbxServicio;
-	private JComboBox<String> cbxPrioridad;
+	private JComboBox<String> cbxServicio1;
+	private JComboBox<String> cbxServicio2 = new JComboBox<String>();
+	private JComboBox<String> cbxServicio3 = new JComboBox<String>();
 	public Controller controlador = new Controller();
-	public Cliente cliente = new Cliente();
+	public Asesor asesor = new Asesor();
+	JCheckBox chckbxEstado = new JCheckBox("Activo");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,17 +54,19 @@ public class viewAsesor extends JFrame {
 
 	public viewAsesor() {
 		super("Ventana Servicios");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Ventana Asesor");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// this.setExtendedState(JFrame.NORMAL);
 
-		this.setBounds(500, 200, 490, 370);
+		this.setBounds(500, 200, 490, 437);
 		JPanel panelPrincipal = new JPanel();
 		// panelPrincipal.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0,
 		// 0)));
 
 		panelPrincipal.setLayout(null);
 		panelPrincipal.setLayout(null);
-		JLabel lblTitulo = new JLabel("INGRESAR DATOS");
+		JLabel lblTitulo = new JLabel("INGRESAR DATOS ASESOR");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setForeground(Color.WHITE);
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblTitulo.setBackground(Color.WHITE);
@@ -74,13 +81,13 @@ public class viewAsesor extends JFrame {
 		JPanel panelAux2 = new JPanel();
 		panelAux2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panelAux2.setBackground(Color.LIGHT_GRAY);
-		panelAux2.setBounds(2, 42, 465, 205);
+		panelAux2.setBounds(2, 43, 465, 291);
 		panelPrincipal.add(panelAux2);
 		panelAux2.setLayout(null);
 
 		JLabel lblServicio = new JLabel("NOMBRE:");
-		lblServicio.setBackground(Color.LIGHT_GRAY);
 		lblServicio.setBounds(73, 8, 87, 30);
+		lblServicio.setBackground(Color.LIGHT_GRAY);
 		lblServicio.setForeground(Color.BLACK);
 		lblServicio.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblServicio.setHorizontalAlignment(SwingConstants.CENTER);
@@ -91,98 +98,116 @@ public class viewAsesor extends JFrame {
 		panelAux2.add(textNombre);
 		textNombre.setColumns(10);
 
-		JLabel lblServicio_1 = new JLabel("SERVICIO:");
-		lblServicio_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblServicio_1.setForeground(Color.BLACK);
-		lblServicio_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblServicio_1.setBackground(Color.LIGHT_GRAY);
-		lblServicio_1.setBounds(73, 90, 87, 30);
-		panelAux2.add(lblServicio_1);
-
-		JLabel lblPrioridad = new JLabel("PRIORIDAD:");
-		lblPrioridad.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPrioridad.setForeground(Color.BLACK);
-		lblPrioridad.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblPrioridad.setBackground(Color.LIGHT_GRAY);
-		lblPrioridad.setBounds(62, 131, 98, 30);
-		panelAux2.add(lblPrioridad);
+		JLabel lblServicio1 = new JLabel("SERVICIO 1:");
+		lblServicio1.setBounds(52, 90, 99, 30);
+		lblServicio1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblServicio1.setForeground(Color.BLACK);
+		lblServicio1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblServicio1.setBackground(Color.LIGHT_GRAY);
+		panelAux2.add(lblServicio1);
 
 		JLabel lblDocumento = new JLabel("DOCUMENTO:");
+		lblDocumento.setBounds(42, 49, 119, 30);
 		lblDocumento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDocumento.setForeground(Color.BLACK);
 		lblDocumento.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblDocumento.setBackground(Color.LIGHT_GRAY);
-		lblDocumento.setBounds(41, 52, 119, 30);
 		panelAux2.add(lblDocumento);
 
 		textDocumento = new JTextField();
-		textDocumento.setColumns(10);
 		textDocumento.setBounds(170, 52, 159, 30);
+		textDocumento.setColumns(10);
 		panelAux2.add(textDocumento);
 
-		cbxServicio = new JComboBox<String>();
-		cbxServicio.setBounds(171, 96, 159, 24);
-		panelAux2.add(cbxServicio);
+		cbxServicio1 = new JComboBox<String>();
+		cbxServicio1.setBounds(171, 96, 159, 24);
+		panelAux2.add(cbxServicio1);
 
-		
 		List<Servicio> items;
-		cbxServicio.addItem(" ");
+		cbxServicio1.addItem(" ");
+		cbxServicio2.addItem(" ");
+		cbxServicio3.addItem(" ");
 		items = controlador.listarServicios();
 		for (int i = 0; i < items.size(); i++) {
-			cbxServicio.addItem(items.get(i).getServ());
+			cbxServicio1.addItem(items.get(i).getServ());
+			cbxServicio2.addItem(items.get(i).getServ());
+			cbxServicio3.addItem(items.get(i).getServ());
 		}
 
-		cbxPrioridad = new JComboBox<String>();
-		cbxPrioridad.setBounds(171, 137, 158, 24);
-		panelAux2.add(cbxPrioridad);
-
 		resultado = new JLabel("Mensaje");
+		resultado.setBounds(52, 251, 384, 14);
 		resultado.setHorizontalAlignment(SwingConstants.CENTER);
 		resultado.setEnabled(false);
 		resultado.setVisible(false);
-		resultado.setBounds(41, 180, 384, 14);
 		panelAux2.add(resultado);
-		
-		List<Prioridad> itemsPrioridad;
-		cbxPrioridad.addItem(" ");
-		itemsPrioridad = controlador.listarPrioridad();
-		for (int i = 0; i < itemsPrioridad.size(); i++) {
-			cbxPrioridad.addItem(itemsPrioridad.get(i).getPrioridad());
-		}
+
+		JLabel lblServicio2 = new JLabel("SERVICIO 2:");
+		lblServicio2.setBounds(52, 123, 99, 30);
+		lblServicio2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblServicio2.setForeground(Color.BLACK);
+		lblServicio2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblServicio2.setBackground(Color.LIGHT_GRAY);
+		panelAux2.add(lblServicio2);
+
+		JLabel lblServicio3 = new JLabel("SERVICIO 3:");
+		lblServicio3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblServicio3.setForeground(Color.BLACK);
+		lblServicio3.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblServicio3.setBackground(Color.LIGHT_GRAY);
+		lblServicio3.setBounds(51, 162, 99, 30);
+		panelAux2.add(lblServicio3);
+
+		cbxServicio2.setBounds(170, 129, 159, 24);
+		panelAux2.add(cbxServicio2);
+
+		cbxServicio3.setBounds(170, 168, 159, 24);
+		panelAux2.add(cbxServicio3);
+
+		chckbxEstado.setBackground(Color.LIGHT_GRAY);
+		chckbxEstado.setHorizontalAlignment(SwingConstants.CENTER);
+		chckbxEstado.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		chckbxEstado.setBounds(170, 199, 159, 30);
+		panelAux2.add(chckbxEstado);
 
 		JPanel panelAux3 = new JPanel();
 		panelAux3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panelAux3.setBackground(Color.BLACK);
-		panelAux3.setBounds(2, 245, 465, 77);
+		panelAux3.setBounds(2, 335, 465, 63);
 		panelPrincipal.add(panelAux3);
 		panelAux3.setLayout(null);
 
 		btnIngresarDatos = new JButton("Ingresar Datos");
-		btnIngresarDatos.setBounds(171, 11, 168, 36);
+		btnIngresarDatos.setBounds(159, 11, 168, 36);
 		panelAux3.add(btnIngresarDatos);
 		getContentPane().add(panelPrincipal);
 
 		btnIngresarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				cliente.setId(Integer.parseInt(textDocumento.getText()));
-				cliente.setNombre(textNombre.getText());
-				Servicio servicio = new Servicio();
-				Prioridad prioridad = new Prioridad();
-				cliente.setServicio(new ArrayList<Servicio>());
-				cliente.setPrioridad(new ArrayList<Prioridad>());
+				asesor.setId(Integer.parseInt(textDocumento.getText()));
+				asesor.setNombre(textNombre.getText());
+				asesor.setEstado(chckbxEstado.isSelected());
 
-				servicio = controlador.consultarServicioNombre((String) cbxServicio.getSelectedItem());
-				prioridad = controlador.consultarPrioridad((String) cbxPrioridad.getSelectedItem());
+				
+				Servicio servicio1 = new Servicio();
+				Servicio servicio2 = new Servicio();
+				Servicio servicio3 = new Servicio();
 
-				cliente.getServicio().add(controlador.consultarServicio(servicio.getId()));
-				cliente.getPrioridad().add(controlador.consultarPrioridad(prioridad.getId()));
+				asesor.setServicio(new ArrayList<Servicio>());
 
-				controlador.guardarUsuario(cliente);
+				servicio1 = controlador.consultarServicioNombre((String) cbxServicio1.getSelectedItem());
+				servicio2 = controlador.consultarServicioNombre((String) cbxServicio2.getSelectedItem());
+				servicio3 = controlador.consultarServicioNombre((String) cbxServicio3.getSelectedItem());
+
+				asesor.getServicio().add(controlador.consultarServicio(servicio1.getId()));
+				asesor.getServicio().add(controlador.consultarServicio(servicio2.getId()));
+				asesor.getServicio().add(controlador.consultarServicio(servicio3.getId()));
+
+				controlador.guardarAsesor(asesor);
 
 				resultado.setVisible(true);
 				resultado.setEnabled(true);
-				resultado.setText("Su turno es x");
+				resultado.setText("El asesor fue ingresado correctamente");
 
 				textNombre.setText(null);
 				textDocumento.setText(null);
@@ -201,7 +226,8 @@ public class viewAsesor extends JFrame {
 	public void arranca() {
 		pack();// coloca los componentes
 		setLocationRelativeTo(null);// centra la ventana en la pantalla
-		this.setBounds(500, 200, 490, 370);
+		this.setBounds(500, 200, 490, 437);
+		this.setLocation(580, 200);
 		setVisible(true);// visualiza la ventana
 	}
 
@@ -223,19 +249,9 @@ public class viewAsesor extends JFrame {
 
 	}
 
-	public String getPrioridad() {
-		try {
-			String servicio = (String) cbxPrioridad.getSelectedItem();
-			return (servicio);
-		} catch (NumberFormatException e) {
-			return null;
-		}
-
-	}
-
 	public String getServicio() {
 		try {
-			String servicio = (String) cbxServicio.getSelectedItem();
+			String servicio = (String) cbxServicio1.getSelectedItem();
 			return (servicio);
 		} catch (NumberFormatException e) {
 			return null;
@@ -246,5 +262,4 @@ public class viewAsesor extends JFrame {
 	public void escribeCambio(String s) {
 		resultado.setText(s);
 	}
-
 }

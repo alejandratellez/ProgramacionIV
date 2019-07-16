@@ -6,25 +6,37 @@
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
 	<persistence-unit name="Turnero">
-	<class>
+		<class>
 	Modelo.Servicio
 	</class>
-	<class>
+		<class>
 	Modelo.Persona
 	</class>
-	<class>
+		<class>
 	Modelo.Cliente
 	</class>
-	<class>
+		<class>
 	Modelo.Prioridad
 	</class>
+
+		<class>
+	Modelo.Asesor
+	</class>
+		<class>
+	Modelo.PuestosAtencion
+	</class>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:C:\Users\atellezc\Documents\IMPORTANTE\PERSONAL\UNIVERSIDAD\PROGRA 4\Repositorio\ProgramacionIV\Turnero Proyecto/Turnero" />
+			<property name="javax.persistence.jdbc.driver"
+				value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:h2:C:\Users\atellezc\Documents\IMPORTANTE\PERSONAL\UNIVERSIDAD\PROGRA 4\Repositorio\ProgramacionIV\Turnero Proyecto/Turnero" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-			<property name="javax.persistence.schema-generation.database.action" value="create" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.H2Dialect" />
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="create" />
 		</properties>
 	</persistence-unit>
 

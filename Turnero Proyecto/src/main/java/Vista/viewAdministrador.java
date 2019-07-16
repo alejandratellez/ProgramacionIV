@@ -110,11 +110,32 @@ public class viewAdministrador extends JFrame {
 
 				vistaPrioridad.arranca();
 
-				controlador.setVistaPrioridad(vistaPrioridad);
+			}
+
+		});
+
+		btnAsesores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				viewAsesor vistaAsesor = new viewAsesor();
+
+				vistaAsesor.arranca();
+
 			}
 
 		});
 		
+		btnPuestosDeAtencion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				viewPuestosAtencion vistaPuestos = new viewPuestosAtencion();
+
+				vistaPuestos.arranca();
+
+			}
+
+		});
+
 		btnServ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -122,7 +143,6 @@ public class viewAdministrador extends JFrame {
 
 				vistaServicio.arranca();
 
-				
 			}
 
 		});

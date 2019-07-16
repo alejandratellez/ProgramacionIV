@@ -7,8 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import Modelo.Asesor;
 import Modelo.Cliente;
 import Modelo.Prioridad;
+import Modelo.PuestosAtencion;
 import Modelo.Servicio;
 import Vista.viewAdministrador;
 import Vista.viewCliente;
@@ -31,38 +33,23 @@ public class Controller {
 		return emf.createEntityManager();
 	}
 
-	public List<Servicio> listarServicios() {
+	//// *****************CRUD DE PRIORIDAD***************************
+	public Prioridad crearPrioridad(Prioridad prioridad) {
 		EntityManager em = getEntityManager();
 
-		Query query = em.createQuery("SELECT s FROM Servicio s");
-		List<Servicio> resp = (List<Servicio>) query.getResultList();
+		em.getTransaction().begin();
+		prioridad = em.merge(prioridad);
 
+		em.getTransaction().commit();
 		em.close();
-		return resp;
+		return prioridad;
+
 	}
 
-	public Servicio consultarServicioNombre(String servicio) {
-		Servicio serv;
+	public Prioridad consultarPrioridad(int id) {
 		EntityManager em = getEntityManager();
 
-		Query query = em.createQuery("SELECT s FROM Servicio s WHERE s.serv = '" + servicio + "'");
-		List<Servicio> resp = (List<Servicio>) query.getResultList();
-		if (resp.size() != 0) {
-			serv = resp.get(0);
-		} else {
-
-			serv = new Servicio("no");
-		}
-
-		em.close();
-		return serv;
-	}
-
-	public List<Prioridad> listarPrioridad() {
-		EntityManager em = getEntityManager();
-
-		Query query = em.createQuery("SELECT p FROM Prioridad p");
-		List<Prioridad> resp = (List<Prioridad>) query.getResultList();
+		Prioridad resp = em.find(Prioridad.class, id);
 
 		em.close();
 		return resp;
@@ -94,18 +81,65 @@ public class Controller {
 
 	}
 
-	public Prioridad crearPrioridad(Prioridad prioridad) {
+	public List<Prioridad> listarPrioridad() {
+		EntityManager em = getEntityManager();
+
+		Query query = em.createQuery("SELECT p FROM Prioridad p");
+		List<Prioridad> resp = (List<Prioridad>) query.getResultList();
+
+		em.close();
+		return resp;
+	}
+
+////*****************CRUD DE PUESTO ATENCION***************************
+	public PuestosAtencion crearPuesto(PuestosAtencion puesto) {
 		EntityManager em = getEntityManager();
 
 		em.getTransaction().begin();
-		prioridad = em.merge(prioridad);
+		puesto = em.merge(puesto);
 
 		em.getTransaction().commit();
 		em.close();
-		return prioridad;
+		return puesto;
 
 	}
 
+	public PuestosAtencion consultarPuesto(int id) {
+		EntityManager em = getEntityManager();
+
+		PuestosAtencion resp = em.find(PuestosAtencion.class, id);
+
+		em.close();
+		return resp;
+	}
+
+	public PuestosAtencion consultarPuestoNombre(String puesto) {
+		PuestosAtencion puest;
+		try {
+
+			EntityManager em = getEntityManager();
+
+			Query query = em.createQuery("SELECT p FROM PuestosAtencion p WHERE p.nombre = '" + puesto + "'");
+			List<PuestosAtencion> resp;
+
+			resp = (List<PuestosAtencion>) query.getResultList();
+
+			puest = resp.get(0);
+
+			em.close();
+			return (puest);
+
+		} catch (NullPointerException e) {
+			puest = new PuestosAtencion("no");
+			return null;
+		} catch (ArrayIndexOutOfBoundsException a) {
+			puest = new PuestosAtencion("no");
+			return puest;
+		}
+
+	}
+
+	//// *****************CRUD DE SERVICIO***************************
 	public Servicio crearServicio(Servicio servicio) {
 		EntityManager em = getEntityManager();
 
@@ -118,6 +152,45 @@ public class Controller {
 
 	}
 
+	public Servicio consultarServicio(int id) {
+		EntityManager em = getEntityManager();
+
+		Servicio resp = em.find(Servicio.class, id);
+
+		em.close();
+		return resp;
+	}
+
+	public List<Servicio> listarServicios() {
+		EntityManager em = getEntityManager();
+
+		Query query = em.createQuery("SELECT s FROM Servicio s");
+		List<Servicio> resp = (List<Servicio>) query.getResultList();
+
+		em.close();
+		return resp;
+	}
+
+	public Servicio consultarServicioNombre(String servicio) {
+		Servicio serv;
+		EntityManager em = getEntityManager();
+
+		Query query = em.createQuery("SELECT s FROM Servicio s WHERE s.serv = '" + servicio + "'");
+		List<Servicio> resp = (List<Servicio>) query.getResultList();
+		if (resp.size() != 0) {
+			serv = resp.get(0);
+		} else {
+
+			serv = new Servicio("no");
+		}
+
+		em.close();
+		return serv;
+	}
+	
+	
+
+	//// *****************CRUD DE USUARIO***************************
 	public Cliente guardarUsuario(Cliente usuario) {
 		EntityManager em = getEntityManager();
 
@@ -129,22 +202,61 @@ public class Controller {
 		return usuario;
 	}
 
-	public Servicio consultarServicio(int id) {
+	public Cliente consultarUsuario(int id) {
 		EntityManager em = getEntityManager();
 
-		Servicio resp = em.find(Servicio.class, id);
+		Cliente resp = em.find(Cliente.class, id);
 
 		em.close();
 		return resp;
 	}
 
-	public Prioridad consultarPrioridad(int id) {
+	//// *****************CRUD DE ASESOR***************************
+	public Asesor guardarAsesor(Asesor usuario) {
 		EntityManager em = getEntityManager();
 
-		Prioridad resp = em.find(Prioridad.class, id);
+		em.getTransaction().begin();
+		usuario = em.merge(usuario);
+
+		em.getTransaction().commit();
+		em.close();
+		return usuario;
+	}
+
+	public Asesor consultarAsesor(int id) {
+		EntityManager em = getEntityManager();
+
+		Asesor resp = em.find(Asesor.class, id);
 
 		em.close();
 		return resp;
+	}
+
+	public List<Asesor> listarAsesor() {
+		EntityManager em = getEntityManager();
+
+		Query query = em.createQuery("SELECT s FROM Asesor s");
+		List<Asesor> resp = (List<Asesor>) query.getResultList();
+
+		em.close();
+		return resp;
+	}
+	
+	public Asesor consultarAsesorNombre(String servicio) {
+		Asesor serv;
+		EntityManager em = getEntityManager();
+
+		Query query = em.createQuery("SELECT s FROM Asesor s WHERE s.nombre = '" + servicio + "'");
+		List<Asesor> resp = (List<Asesor>) query.getResultList();
+		if (resp.size() != 0) {
+			serv = resp.get(0);
+		} else {
+
+			serv = new Asesor("no");
+		}
+
+		em.close();
+		return serv;
 	}
 
 	/*
